@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Better Auth + Next.js Demo
 
-## Getting Started
+Démonstration complète de **Better Auth** avec Next.js 15, TypeScript, et Drizzle ORM.
 
-First, run the development server:
+## 🚀 Getting Started
 
+### 1. Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configuration de la base de données
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Créer .env.local avec DATABASE_URL
+cp .env.example .env.local
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Générer et migrer le schéma
+npm run auth:generate
+npm run auth:migrate
+```
 
-## Learn More
+### 3. Générer une clé secrète
+```bash
+npm run auth:secret
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Lancer l'application
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ouvrir [http://localhost:3000](http://localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ✨ Fonctionnalités
 
-## Deploy on Vercel
+- ✅ **Authentification email/password**
+- ✅ **Sessions sécurisées** avec Better Auth
+- ✅ **Pages d'inscription/connexion** complètes
+- ✅ **Dashboard protégé** avec gestion de session
+- ✅ **Exemples de plugins** (Magic Link, 2FA, etc.)
+- ✅ **Schémas BDD générés automatiquement**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Scripts disponibles
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Better Auth CLI
+```bash
+npm run auth:generate    # Génère le schéma Better Auth
+npm run auth:migrate     # Migre la base de données
+npm run auth:secret      # Génère une clé secrète
+npm run auth:info        # Infos de diagnostic
+```
+
+### Drizzle ORM
+```bash
+npm run db:generate      # Génère les migrations Drizzle
+npm run db:migrate       # Applique les migrations
+```
+
+## 🔧 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Auth**: Better Auth 1.3.7
+- **Database**: PostgreSQL + Drizzle ORM
+- **Styling**: Tailwind CSS 4
+- **Type Safety**: TypeScript 5
+
+## 📁 Structure
+
+```
+src/
+├── lib/
+│   ├── auth.ts          # Configuration Better Auth
+│   ├── auth-client.ts   # Client Better Auth React
+│   └── db/              # Schémas Drizzle
+├── app/
+│   ├── auth/            # Pages d'authentification
+│   ├── dashboard/       # Zone protégée
+│   ├── examples/        # Démo plugins
+│   └── page.tsx         # Page d'accueil
+```
+
+## 🎯 Points clés Better Auth
+
+**Le moment "wow" :** 
+```bash
+npm run auth:migrate
+```
+→ **Toutes vos tables d'authentification se créent automatiquement !**
+
+Plus jamais de schéma SQL manuel. Better Auth génère :
+- `user` - Utilisateurs
+- `session` - Sessions actives  
+- `account` - Comptes OAuth
+- `verification` - Tokens de vérification
+
+## 🔗 Liens utiles
+
+- [Better Auth Documentation](https://better-auth.com)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Drizzle ORM](https://orm.drizzle.team)
